@@ -6,6 +6,7 @@ use Closure;
 use Firebase\JWT\JWT;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Encryption\Encrypter;
+use Illuminate\Foundation\Application;
 use Laravel\Passport\Http\Middleware\CheckClientCredentials as LaravelCheckClientCredentials;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\ResourceServer;
@@ -23,6 +24,10 @@ class CheckClientCredentials extends LaravelCheckClientCredentials
      * @var Encrypter
      */
     private $encrypter;
+    /**
+     * @var Application
+     */
+    private $application;
 
     /**
      * Create a new middleware instance.
@@ -30,10 +35,11 @@ class CheckClientCredentials extends LaravelCheckClientCredentials
      * @param  \League\OAuth2\Server\ResourceServer  $server
      * @return void
      */
-    public function __construct(ResourceServer $server, Encrypter $encrypter)
+    public function __construct(ResourceServer $server, Encrypter $encrypter, Application $application)
     {
         $this->server = $server;
         $this->encrypter = $encrypter;
+        $this->application = $application;
     }
 
     /**
@@ -52,13 +58,21 @@ class CheckClientCredentials extends LaravelCheckClientCredentials
         } elseif ($request->cookie(config('passport-client-cookie.cookie_name'))) {
             $this->authenticateViaCookie($request);
         } else {
-            throw new AuthenticationException;
+            if (!$this->shouldSkipMiddleware()) {
+                throw new AuthenticationException;
+            }
         }
 
         // Scopes not supported for now
         // $this->validateScopes($psr, $scopes);
 
         return $next($request);
+    }
+
+    private function shouldSkipMiddleware()
+    {
+        return $this->application->bound('middleware.passport_client_credentials.disable') &&
+            $this->application->make('middleware.passport_client_credentials.disable') === true;
     }
 
     private function authenticateViaBearerToken($request)
