@@ -31,3 +31,6 @@ Replace your `CheckClientCredentials` route middleware with the passport client 
 ```php
 'client' => \Netsells\PassportClientCookie\Middleware\CheckClientCredentials::class,
 ```
+
+### Testing
+You can disable the checking middleware by pulling the `WithoutClientCredentialsMiddleware` trait in and calling `$this->withoutClientCredentialsMiddleware()` at the top of your test.
