@@ -2,7 +2,7 @@
 
 namespace Netsells\PassportClientCookie\Tests;
 
-class WithoutClientCredentialsMiddleware
+trait WithoutClientCredentialsMiddleware
 {
 
     /**
