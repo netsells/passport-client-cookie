@@ -1,0 +1,24 @@
+{
+    "name": "netsells/passport-client-cookie",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sam Jordan",
+            "email": "sam@netsells.co.uk"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Netsells\\PassportClientCookie\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Netsells\\PassportClientCookie\\ServiceProvider"
+            ]
+        }
+    }
+}
