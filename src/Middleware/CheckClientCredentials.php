@@ -81,6 +81,8 @@ class CheckClientCredentials extends LaravelCheckClientCredentials
 
         try {
             $psr = $this->server->validateAuthenticatedRequest($psr);
+            
+            app()->instance('oauth.client_id', $psr->getAttribute('oauth_client_id'));
         } catch (OAuthServerException $e) {
             throw new AuthenticationException;
         }
