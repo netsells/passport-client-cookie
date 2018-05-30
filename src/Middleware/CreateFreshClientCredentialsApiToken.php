@@ -3,7 +3,8 @@
 namespace Netsells\PassportClientCookie\Middleware;
 
 use Closure;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 
 class CreateFreshClientCredentialsApiToken
 {
@@ -78,7 +79,7 @@ class CreateFreshClientCredentialsApiToken
      */
     protected function responseShouldReceiveFreshToken($response)
     {
-        return $response instanceof Response && ! $this->alreadyContainsToken($response);
+        return ($response instanceof Response || $response instanceof JsonResponse) && ! $this->alreadyContainsToken($response);
     }
 
     /**
