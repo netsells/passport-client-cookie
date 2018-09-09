@@ -19,7 +19,7 @@ class CheckClientCredentials extends LaravelCheckClientCredentials
      *
      * @var \League\OAuth2\Server\ResourceServer
      */
-    private $server;
+    protected $server;
     /**
      * @var Encrypter
      */

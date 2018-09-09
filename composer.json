@@ -8,7 +8,9 @@
             "email": "sam@netsells.co.uk"
         }
     ],
-    "require": {},
+    "require": {
+        "laravel/passport": "4.0 - 6.0"
+    },
     "autoload": {
         "psr-4": {
             "Netsells\\PassportClientCookie\\": "src/"
