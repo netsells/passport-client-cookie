@@ -38,7 +38,7 @@ class CreateFreshClientCredentialsApiToken
     {
         $response = $next($request);
 
-        if ($this->shouldReceiveFreshToken($request, $response)) {
+        if ($this->shouldReceiveFreshToken($request, $response) && $this->responseSupportsCookies($response)) {
             $response->withCookie($this->cookieFactory->make(
                 config('passport-client-cookie.client_id'), $request->session()->token()
             ));
@@ -99,6 +99,16 @@ class CreateFreshClientCredentialsApiToken
         }
 
         return false;
+    }
+    
+    /**
+     * Verifies the response can have cookies, for example, a BinaryResponse cannot.
+     * @param $response
+     * @return bool
+     */
+    protected function responseSupportsCookies($response)
+    {
+        return method_exists($response, 'withCookie');
     }
 
 }
