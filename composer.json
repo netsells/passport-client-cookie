@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "laravel/passport": "4.0 - 7.0"
+        "laravel/passport": "4.0 - 7.5"
     },
     "autoload": {
         "psr-4": {
