@@ -128,7 +128,7 @@ class CheckClientCredentials extends LaravelCheckClientCredentials
     protected function decodeJwtTokenCookie($request)
     {
         return (array) JWT::decode(
-            $this->encrypter->decrypt($request->cookie(config('passport-client-cookie.cookie_name', 'laravel_client_token'))),
+            $this->encrypter->decrypt($request->cookie(config('passport-client-cookie.cookie_name', 'laravel_client_token')), false),
             $this->encrypter->getKey(), ['HS256']
         );
     }
