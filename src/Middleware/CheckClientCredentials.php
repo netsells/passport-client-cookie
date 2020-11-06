@@ -7,10 +7,14 @@ use Firebase\JWT\JWT;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Foundation\Application;
+use Laminas\Diactoros\ResponseFactory;
+use Laminas\Diactoros\ServerRequestFactory;
+use Laminas\Diactoros\StreamFactory;
+use Laminas\Diactoros\UploadedFileFactory;
 use Laravel\Passport\Http\Middleware\CheckClientCredentials as LaravelCheckClientCredentials;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\ResourceServer;
-use Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory;
+use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
 
 class CheckClientCredentials extends LaravelCheckClientCredentials
 {
@@ -77,7 +81,12 @@ class CheckClientCredentials extends LaravelCheckClientCredentials
 
     private function authenticateViaBearerToken($request)
     {
-        $psr = (new DiactorosFactory)->createRequest($request);
+        $psr = (new PsrHttpFactory(
+            new ServerRequestFactory(),
+            new StreamFactory(),
+            new UploadedFileFactory(),
+            new ResponseFactory()
+        ))->createRequest($request);
 
         try {
             $psr = $this->server->validateAuthenticatedRequest($psr);
