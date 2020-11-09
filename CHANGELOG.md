@@ -20,6 +20,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Removed
 - Support for Passport < 8.4.1
 
+## [1.1.1] - 2020-11-09
+## Added
+- Requirement for PSR Message Bridge v1
+
 ## [1.1.0] - 2020-10-14
 ## Added
 - Support for Passport 8
