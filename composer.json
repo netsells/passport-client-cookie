@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "laravel/passport": "^8.4.1 || ^9.0",
+        "laravel/passport": "^8.4.1 || ^9.0 || ^10.0",
         "symfony/psr-http-message-bridge": "^2.0"
     },
     "autoload": {
