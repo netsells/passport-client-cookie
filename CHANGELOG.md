@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * [1.0](#100---2019-12-04) - Initial Version
 
 ## Unreleased
+## [2.1.0] - 2021-06-16
 ### Added
 - Support for Passport ^10.0
 
@@ -37,7 +38,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Support for Passport 6.0.7 - 7.5
 
-[Unreleased]: https://github.com/netsells/hatchly-platform/compare/2.0.0...HEAD
+[Unreleased]: https://github.com/netsells/hatchly-platform/compare/2.1.0...HEAD
+[2.0.0]: https://github.com/netsells/hatchly-platform/compare/2.0.0...2.1.0
 [2.0.0]: https://github.com/netsells/hatchly-platform/compare/1.1.1...2.0.0
 [1.1.1]: https://github.com/netsells/hatchly-platform/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/netsells/hatchly-platform/compare/1.0.0...1.1.0
