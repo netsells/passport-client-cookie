@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * [1.0](#100---2019-12-04) - Initial Version
 
 ## Unreleased
+### Added
+- Support for Passport ^10.0
 
 ## [2.0.0] - 2021-04-21
 ### Added
