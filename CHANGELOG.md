@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * [1.0](#100---2019-12-04) - Initial Version
 
 ## Unreleased
+### Added
+- Adds composer requirement for Diactoros package
+
 ## [2.1.0] - 2021-06-16
 ### Added
 - Support for Passport ^10.0
