@@ -71,10 +71,14 @@ class ApiTokenCookieFactory
      */
     protected function createToken($clientId, $csrfToken, Carbon $expiration)
     {
-        return JWT::encode([
-            'sub' => $clientId,
-            'csrf' => $csrfToken,
-            'expiry' => $expiration->getTimestamp(),
-        ], $this->encrypter->getKey());
+        return JWT::encode(
+            [
+                'sub' => $clientId,
+                'csrf' => $csrfToken,
+                'expiry' => $expiration->getTimestamp(),
+            ],
+            $this->encrypter->getKey(),
+            'HS256' //Default algorithm before laravel/passport v10
+        );
     }
 }
