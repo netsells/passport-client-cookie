@@ -136,10 +136,21 @@ class CheckClientCredentials extends LaravelCheckClientCredentials
      */
     protected function decodeJwtTokenCookie($request)
     {
-        return (array) JWT::decode(
-            $this->encrypter->decrypt($request->cookie(config('passport-client-cookie.cookie_name', 'laravel_client_token')), false),
-            $this->encrypter->getKey(), ['HS256']
-        );
+        $decodeParameters = [
+            $this->encrypter->decrypt(
+                $request->cookie(config('passport-client-cookie.cookie_name', 'laravel_client_token')),
+                false
+            ),
+        ];
+
+        if (class_exists('\Firebase\JWT\Key')) {
+            $decodeParameters[] = new \Firebase\JWT\Key($this->encrypter->getKey(), 'HS256');
+        } else {
+            $decodeParameters[] = $this->encrypter->getKey();
+            $decodeParameters[] = ['HS256'];
+        }
+
+        return (array) JWT::decode(...$decodeParameters);
     }
 
     /**
