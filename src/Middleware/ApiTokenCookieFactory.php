@@ -78,7 +78,7 @@ class ApiTokenCookieFactory
                 'expiry' => $expiration->getTimestamp(),
             ],
             $this->encrypter->getKey(),
-            'HS256' //Default algorithm before laravel/passport v10
+            'HS256'
         );
     }
 }
